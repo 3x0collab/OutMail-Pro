@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | OutMail Pro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      background: radial-gradient(circle at 20% 30%, #023e02, #001a00 80%);
+      color: #fff;
+    }
+
+    /* --- Animated Floating Blobs --- */
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .blob {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(2,160,60,0.8), transparent 70%);
+      border-radius: 50%;
+      filter: blur(100px);
+      animation: floatBlob 25s infinite ease-in-out;
+      opacity: 0.7;
+    }
+
+    .blob:nth-child(1) {
+      top: 10%;
+      left: 15%;
+      animation-delay: 0s;
+    }
+
+    .blob:nth-child(2) {
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 5s;
+      background: radial-gradient(circle, rgba(0,255,150,0.7), transparent 70%);
+    }
+
+    .blob:nth-child(3) {
+      top: 60%;
+      left: 60%;
+      animation-delay: 10s;
+      background: radial-gradient(circle, rgba(180,255,200,0.6), transparent 70%);
+    }
+
+    @keyframes floatBlob {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(50px, -60px) scale(1.2);
+      }
+    }
+
+    /* --- Animated Gradient Overlay --- */
+    .gradient-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(0,128,0,0.2), rgba(255,255,255,0.05), rgba(0,128,0,0.1));
+      background-size: 300% 300%;
+      animation: moveGradient 20s ease infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* --- Login Box --- */
+    .login-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-area {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo-area img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      border: 2px solid #00ff88;
+      background: rgba(0,0,0,0.3);
+      animation: pulseGlow 3s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(0,255,100,0.4); }
+      50% { box-shadow: 0 0 35px rgba(0,255,100,0.8); }
+    }
+
+    .logo-area h1 {
+      color: #fff;
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    .logo-area p {
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 25px;
+    }
+
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 18px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      font-size: 15px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    input:focus {
+      border-color: #00ff88;
+      outline: none;
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(0,255,100,0.3);
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(90deg, #00b96b, #007f3b);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(0,255,100,0.4);
+    }
+
+    .error {
+      color: #ff5c5c;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 20px;
+      color: #cfcfcf;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .login-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
+  <div class="gradient-overlay"></div>
+
+  <div class="login-box">
+    <div class="logo-area">
+      <img src="https://pbs.twimg.com/media/G3C-pciWoAAoWlj?format=jpg&name=360x360" alt="OutMail Pro Logo">
+      <h1>OutMail Pro</h1>
+      <p>Smart Mail Delivery System</p>
+    </div>
+
+    <h2>Sign In</h2>
+    {% if form.errors %}
+      <div class="error">Invalid username or password</div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username" autofocus required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="footer-text">
+      &copy; 2025 OutMail Pro — Secure Access
+    </div>
+  </div>
+</body>
+</html>
