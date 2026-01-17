@@ -1,2 +1,6 @@
-# OutMail-Pro
-A high-performance bulk email engine that sends messages individually rather than in batches. Features SMTP rotation, dynamic template personalization, and robust queue management for maximum deliverability.
+### 📸 Dashboard Preview
+
+| Campaign Dashboard | Email Composer |
+|:---:|:---:|
+| ![Dashboard View](OutMail-Pro/Screenshot%202025-10-12%20095929.png) | ![Email Editor](OutMail-Pro/Screenshot%202025-10-20%20220003.png) |
+| *Real-time sending stats* | *Bulk email composition tool* |
