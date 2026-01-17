@@ -1,0 +1,10 @@
+Django==4.2.25
+django-celery-beat==2.8.1
+django-celery-results==2.6.0
+django-redis==6.0.0
+celery==5.5.3
+redis==6.4.0
+psycopg2-binary==2.9.11      # if using PostgreSQL
+python-dotenv==1.1.1          # for environment variables
+django-crispy-forms==2.4
+python-dateutil==2.9.0.post0
